@@ -461,8 +461,6 @@ export default {
 
   drawTraceLine: function(chart) {
 
-    var yScale = this.getYScale(chart);
-
     var lineWidth = this.getOption(chart, 'line', 'width');
     var color = this.getOption(chart, 'line', 'color');
     var dashPattern = this.getOption(chart, 'line', 'dashPattern');
@@ -476,10 +474,10 @@ export default {
 
     chart.ctx.beginPath();
     chart.ctx.setLineDash(dashPattern);
-    chart.ctx.moveTo(lineX, yScale.getPixelForValue(yScale.max));
+    chart.ctx.moveTo(lineX, chart.chartArea.top);
     chart.ctx.lineWidth = lineWidth;
     chart.ctx.strokeStyle = color;
-    chart.ctx.lineTo(lineX, yScale.getPixelForValue(yScale.min));
+    chart.ctx.lineTo(lineX, chart.chartArea.bottom);
     chart.ctx.stroke();
     chart.ctx.setLineDash([]);
 
